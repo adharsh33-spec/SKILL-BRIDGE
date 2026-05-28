@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SkillBridge</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>SkillBridge</h1>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#skills">My Skills</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="user-profile">
+                    <div class="profile-avatar">👤</div>
+                    <h3 id="userName">User Name</h3>
+                    <p id="userEmail">user@example.com</p>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a href="#dashboard" class="active">Dashboard</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#recommendations">Job Recommendations</a></li>
+                    <li><a href="#upskilling">Upskilling Paths</a></li>
+                    <li><a href="#certificates">My Certificates</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <h2>Dashboard</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Skills Added</h3>
+                            <p class="stat-value" id="skillCount">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Job Recommendations</h3>
+                            <p class="stat-value" id="jobCount">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Certificates Earned</h3>
+                            <p class="stat-value" id="certCount">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section id="skills" class="content-section">
+                    <h2>My Skills</h2>
+                    <button class="btn btn-primary" onclick="openAddSkillModal()">Add Skill</button>
+                    <div id="skillsList" class="skills-list">
+                        <!-- Skills will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Recommendations Section -->
+                <section id="recommendations" class="content-section">
+                    <h2>Job Recommendations</h2>
+                    <button class="btn btn-primary" onclick="generateRecommendations()">Generate Recommendations</button>
+                    <div id="recommendationsList" class="recommendations-list">
+                        <!-- Recommendations will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Certificates Section -->
+                <section id="certificates" class="content-section">
+                    <h2>My Certificates</h2>
+                    <div id="certificatesList" class="certificates-list">
+                        <!-- Certificates will be loaded here -->
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Skill Modal -->
+    <div id="addSkillModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddSkillModal()">&times;</span>
+            <h2>Add a New Skill</h2>
+            <form id="addSkillForm">
+                <div class="form-group">
+                    <label for="skillName">Skill Name</label>
+                    <input type="text" id="skillName" required>
+                </div>
+                <div class="form-group">
+                    <label for="skillLevel">Level</label>
+                    <select id="skillLevel" required>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Expert">Expert</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="yearsExp">Years of Experience</label>
+                    <input type="number" id="yearsExp" min="0" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Skill</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

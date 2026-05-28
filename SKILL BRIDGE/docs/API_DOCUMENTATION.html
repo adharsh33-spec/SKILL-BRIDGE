@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - SkillBridge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #4A90E2;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .method.post {
+            background: #28a745;
+            color: white;
+        }
+        
+        .method.get {
+            background: #007bff;
+            color: white;
+        }
+        
+        .method.put {
+            background: #ffc107;
+            color: white;
+        }
+        
+        .method.delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .parameter {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #4A90E2;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SkillBridge API Documentation</h1>
+            <p>Complete API reference for SkillBridge platform</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2>Base URL</h2>
+        <p><code>http://localhost:8000/api</code></p>
+        
+        <h2>Authentication Endpoints</h2>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /auth/register</h3>
+            <p>Register a new user account</p>
+            
+            <h4>Request Body</h4>
+            <pre><code>{
+  "email": "user@example.com",
+  "password": "securepassword",
+  "full_name": "John Doe"
+}</code></pre>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "message": "User registered successfully"
+}</code></pre>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /auth/login</h3>
+            <p>Authenticate user and return JWT token</p>
+            
+            <h4>Request Body</h4>
+            <pre><code>{
+  "email": "user@example.com",
+  "password": "securepassword"
+}</code></pre>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 1,
+    "email": "user@example.com",
+    "full_name": "John Doe"
+  }
+}</code></pre>
+        </div>
+        
+        <h2>Skill Endpoints</h2>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /skills/add</h3>
+            <p>Add a new skill for the user</p>
+            
+            <h4>Request Body</h4>
+            <pre><code>{
+  "user_id": 1,
+  "skill_name": "Python",
+  "level": "Advanced",
+  "years_experience": 4
+}</code></pre>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "message": "Skill added successfully"
+}</code></pre>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method get">GET</span> /skills/user/{user_id}</h3>
+            <p>Get all skills for a user</p>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "skill_name": "Python",
+      "level": "Advanced",
+      "years_experience": 4
+    }
+  ]
+}</code></pre>
+        </div>
+        
+        <h2>Job Recommendation Endpoints</h2>
+        
+        <div class="endpoint">
+            <h3><span class="method get">GET</span> /jobs/all</h3>
+            <p>Get all active job listings</p>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "title": "Python Developer",
+      "description": "...",
+      "category": "Software Development",
+      "required_skills": "[\"Python\", \"Web Development\"]",
+      "salary_range": "80000-120000",
+      "company": "TechCorp"
+    }
+  ]
+}</code></pre>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method get">GET</span> /recommendations/user/{user_id}</h3>
+            <p>Get job recommendations for a user</p>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "job_id": 1,
+      "title": "Senior Python Developer",
+      "match_score": 85.5,
+      "matched_skills": ["Python", "Web Development"],
+      "missing_skills": ["Machine Learning"]
+    }
+  ]
+}</code></pre>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /recommendations/generate/{user_id}</h3>
+            <p>Generate ML-based recommendations for a user</p>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "message": "Recommendations generated",
+  "data": [...]
+}</code></pre>
+        </div>
+        
+        <h2>ML API Endpoints</h2>
+        
+        <p><strong>Base URL:</strong> <code>http://localhost:5000/api</code></p>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /recommend/skills</h3>
+            <p>Get skill recommendations based on current skills</p>
+            
+            <h4>Request Body</h4>
+            <pre><code>{
+  "user_skills": ["Python", "Web Development"],
+  "current_level": 2
+}</code></pre>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "skill": "Machine Learning",
+      "reason": "Related to Python",
+      "demand_score": 9.5,
+      "learning_path": ["Coursera ML Specialization", "Fast.ai", "Kaggle"]
+    }
+  ]
+}</code></pre>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /recommend/jobs</h3>
+            <p>Get job recommendations based on skills</p>
+            
+            <h4>Request Body</h4>
+            <pre><code>{
+  "user_skills": ["Python", "Machine Learning"],
+  "top_n": 5
+}</code></pre>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "job_id": 2,
+      "title": "ML Engineer",
+      "category": "Data Science",
+      "match_score": 92.5,
+      "matched_skills": ["Python", "Machine Learning"],
+      "missing_skills": ["Data Science"]
+    }
+  ]
+}</code></pre>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /skill-gap</h3>
+            <p>Calculate skill gap for target job</p>
+            
+            <h4>Request Body</h4>
+            <pre><code>{
+  "user_skills": ["Python"],
+  "target_job_skills": ["Python", "Machine Learning", "Data Science"]
+}</code></pre>
+            
+            <h4>Response</h4>
+            <pre><code>{
+  "status": "success",
+  "data": {
+    "matched_skills": ["Python"],
+    "missing_skills": ["Machine Learning", "Data Science"],
+    "match_percentage": 33.33,
+    "gap_percentage": 66.67,
+    "learning_priority": ["Machine Learning", "Data Science"]
+  }
+}</code></pre>
+        </div>
+        
+        <h2>Error Responses</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Status Code</th>
+                    <th>Description</th>
+                    <th>Example Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>400</td>
+                    <td>Bad Request</td>
+                    <td>{"status": "error", "message": "Missing required fields"}</td>
+                </tr>
+                <tr>
+                    <td>401</td>
+                    <td>Unauthorized</td>
+                    <td>{"status": "error", "message": "Invalid credentials"}</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>Not Found</td>
+                    <td>{"status": "error", "message": "Endpoint not found"}</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>Server Error</td>
+                    <td>{"status": "error", "message": "Internal server error"}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Rate Limiting</h2>
+        <p>Currently no rate limiting is implemented. Future versions will include rate limiting per user.</p>
+        
+        <h2>Pagination</h2>
+        <p>Future versions will support pagination with <code>page</code> and <code>limit</code> parameters.</p>
+    </div>
+</body>
+</html>
