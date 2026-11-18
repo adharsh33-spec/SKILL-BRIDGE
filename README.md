@@ -168,16 +168,16 @@ php -S localhost:8000
 ## Features Implemented
 
 ### Phase 1: Core Features
-✅ User Authentication
-✅ Skill Management
-✅ Database Schema
-✅ RESTful API
-✅ Job Database
-✅ ML Job Recommendation Engine
-✅ ML Skill Recommendation Engine
-✅ Responsive Frontend
-✅ Dashboard UI
-✅ Blockchain Certificate Integration
+ User Authentication
+ Skill Management
+ Database Schema
+ RESTful API
+ Job Database
+ ML Job Recommendation Engine
+ ML Skill Recommendation Engine
+ Responsive Frontend
+ Dashboard UI
+ Blockchain Certificate Integration
 
 ### Phase 2: Enhancement (Future)
 - [ ] Email notifications
